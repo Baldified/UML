@@ -8,26 +8,50 @@
 public class Accounting
 {
     // instance variables - replace the example below with your own
-    private int x;
+    double totalRevenue;
+    int transations;
 
     /**
-     * Constructor for objects of class Accounting
+     * initialize the accounting variables in the class
      */
     public Accounting()
     {
-        // initialise instance variables
-        x = 0;
+        
+        
     }
-
+    
+    
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Records the sale to add to the record
+     * 
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void recordSale(int numberCode){
+        
     }
-}
+    
+    
+    /**
+     * Show how mcuh money has been made by the vending machine
+     * 
+     */
+    
+    //public double getTotalRevenue(){
+        
+    //}
+    /**
+     * Resets all transactions made by the vending machine
+     */
+    public void resetRevenue(){
+    }
+    
+    /**
+     * Prints transaction history
+     */
+    public void printAccountingReport(){
+        
+        
+    }
+    
+    }
+    
+
