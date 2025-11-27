@@ -1,33 +1,67 @@
+import java.util.HashMap;
 
 /**
- * Write a description of class Stock here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * This class represents the stock system for the vending machine.
+ * @author Dylan Scalia & Bruce Lam
  */
 public class Stock
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    HashMap<Drinks, Integer> drinkStock;
+    HashMap<Snacks, Integer> snackStock;
 
     /**
-     * Constructor for objects of class Stock
+     * Constructor to initialize the stock system of the vending machine
      */
     public Stock()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Method to add more to a stock.
      */
-    public int sampleMethod(int y)
+    public void addStock(int number, int amount)
     {
-        // put your code here
-        return x + y;
+        
+    }
+    
+    /**
+     * Method to remove from a stock.
+     */
+    public void removeStock(int number, int amount)
+    {
+        
+    }
+    
+    /**
+     * Method to view a stock.
+     */
+    public int checkStock(int number)
+    {
+        return number;
+    }
+    
+    /**
+     * Method to list all stocks
+     */
+    public void listAllStock()
+    {
+        
+    }
+    
+    /**
+     * Method to add to snack stock.
+     */
+    public HashMap addSnackStock(Snacks snack, int amount)
+    {
+        return null;
+    }
+    
+    /**
+     * Method to add to drink stock.
+     */
+    public HashMap addDrinkStock(Drinks drink, int amount)
+    {
+        return null;
     }
 }
