@@ -1,17 +1,16 @@
 
 /**
- * Write a description of class VendingMachine here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * This class represents a vending machine.
+ * @author Dylan Scalia & Bruce Lam
  */
 public class VendingMachine
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    int currentSelection;
+    Stock stock;
+    Accounting accounting;
     /**
-     * Constructor for objects of class VendingMachine
+     * Constructor to initiate the vending machine class.
+     * 
      */
     public VendingMachine()
     {
@@ -19,14 +18,51 @@ public class VendingMachine
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     *Method to prompt the menu in Main class.
      */
-    public int sampleMethod(int y)
+    public void displayMenu()
     {
-        // put your code here
-        return x + y;
+        
+    }
+    
+    /**
+     * Method to select an item in the stock of the vending machine.
+     * @param numberCode Number code of a snack or drink
+     */
+    public void selectItem(int numberCode) 
+    {
+        
+    }
+    
+    /**
+     * Method that confirms a selection.
+     */
+    public void confirmSelection() 
+    {
+        
+    }
+    
+    /**
+     * Method dispenses item to customer.
+     */
+    public void dispenseItem(int numberCode) 
+    {
+        
+    }
+    
+    /**
+     * Method to view the current remaining stock.
+     */
+    public void showStock()
+    {
+        
+    }
+    
+    /**
+     * Method to show sales history of the vending machine.
+     */
+    public void showAccounting()
+    {
+        
     }
 }
