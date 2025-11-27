@@ -8,6 +8,7 @@ public class VendingMachine
     int currentSelection;
     Stock stock;
     Accounting accounting;
+    int confirmation;
     /**
      * Constructor to initiate the vending machine class.
      * 
@@ -31,7 +32,7 @@ public class VendingMachine
      */
     public void selectItem(int numberCode) 
     {
-        
+        currentSelection = numberCode;
     }
     
     /**
@@ -39,6 +40,15 @@ public class VendingMachine
      */
     public void confirmSelection() 
     {
+        switch (currentSelection) {
+            //case 101;
+            //case
+            
+            
+            
+            default: System.out.println("Selection not found.");
+            break;
+            }
         
     }
     
