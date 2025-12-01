@@ -27,7 +27,7 @@ public class Main
         System.out.println("FOR OWNER OF MACHINE");
         System.out.println("2. Show stock remaining of machine");
         System.out.println("3. Show total earnings of the machine");
-        System.out.println("Exit");
+        System.out.println("4. Exit");
         int choice = a.nextInt();
         switch(choice){
             case 1:
@@ -44,6 +44,10 @@ public class Main
             
             case 3:
                 vm.showAccounting();
+                break;
+                
+            case 4: 
+                System.out.println("Thank you for visiting the machine");
                 break;
                 
             default: 
