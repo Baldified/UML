@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main
 {
     
-
+    
     /**
      * 
      */
@@ -21,8 +21,8 @@ public class Main
         System.out.println("Welcome to the vending machine");
         System.out.println("please make a selection");
         
-        for (int row = 1; row <= 5; row++) {
-            for (int col = 0; col < 3; col++) {
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 0; col < 4; col++) {
                 System.out.print((row * 100 + col) + " ");
             }
             System.out.println();
