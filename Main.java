@@ -32,8 +32,11 @@ public class Main
         switch(choice){
             case 1:
                 vm.displayMenu();
+                System.out.print("Enter item code: ");
+                int itemCode = a.nextInt();
+                vm.selectItem(itemCode);
                 break;
-            
+        
             case 2:
                 vm.showStock();
                 break;

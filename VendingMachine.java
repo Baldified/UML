@@ -23,8 +23,16 @@ public class VendingMachine
      */
     public void displayMenu()
     {
-        System.out.println("working");
+        System.out.println("Make a selection");
+        System.out.println();
         
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 0; col < 4; col++) {
+                System.out.print((row * 100 + col) + " ");
+            }
+            System.out.println();
+        }
+        System.out.print("Enter code: ");
     }
     
     /**
@@ -34,6 +42,7 @@ public class VendingMachine
     public void selectItem(int numberCode) 
     {
         currentSelection = numberCode;
+        System.out.println(currentSelection);
     }
     
     /**
@@ -41,15 +50,9 @@ public class VendingMachine
      */
     public void confirmSelection() 
     {
-        switch (currentSelection) {
-            //case 101;
-            //case
+        //switch (currentSelection) 
+            //if(currentSelction
             
-            
-            
-            default: System.out.println("Selection not found.");
-            break;
-            }
         
     }
     
@@ -76,4 +79,4 @@ public class VendingMachine
     {
         System.out.println("working");
     }
-}
+}    
