@@ -37,6 +37,10 @@ public class Main
                 vm.selectItem(itemCode);
                 break;
         
+            case 4: 
+                System.out.println("Thank you for visiting the machine");
+                break;
+                
             case 2:
                 vm.showStock();
                 break;
@@ -46,9 +50,7 @@ public class Main
                 vm.showAccounting();
                 break;
                 
-            case 4: 
-                System.out.println("Thank you for visiting the machine");
-                break;
+            
                 
             default: 
                 break;
