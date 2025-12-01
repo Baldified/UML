@@ -3,7 +3,7 @@
  * This class represents a vending machine.
  * @author Dylan Scalia & Bruce Lam
  */
-public class VendingMachine
+public class VendingMachine 
 {
     int currentSelection;
     Stock stock;
@@ -23,8 +23,16 @@ public class VendingMachine
      */
     public void displayMenu()
     {
+        System.out.println("Make a selection");
+        System.out.println();
         
-        
+        for (int row = 1; row <= 8; row++) {
+            for (int col = 0; col < 4; col++) {
+                System.out.print((row * 100 + col) + " ");
+            }
+            System.out.println();
+        }
+        System.out.print("Enter code: ");
     }
     
     /**
@@ -34,6 +42,7 @@ public class VendingMachine
     public void selectItem(int numberCode) 
     {
         currentSelection = numberCode;
+        System.out.println(currentSelection);
     }
     
     /**
@@ -41,15 +50,9 @@ public class VendingMachine
      */
     public void confirmSelection() 
     {
-        switch (currentSelection) {
-            //case 101;
-            //case
+        //switch (currentSelection) 
+            //if(currentSelction
             
-            
-            
-            default: System.out.println("Selection not found.");
-            break;
-            }
         
     }
     
@@ -66,7 +69,7 @@ public class VendingMachine
      */
     public void showStock()
     {
-        
+        System.out.println("working");
     }
     
     /**
@@ -74,6 +77,6 @@ public class VendingMachine
      */
     public void showAccounting()
     {
-        
+        System.out.println("working");
     }
-}
+}    
