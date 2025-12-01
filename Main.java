@@ -15,20 +15,37 @@ public class Main
         
     }
 
+    
     public static void main(String[] args){
         Scanner a = new Scanner(System.in);
+        VendingMachine vm = new VendingMachine();
         
         System.out.println("Welcome to the vending machine");
-        System.out.println("please make a selection");
-        
-        for (int row = 1; row <= 8; row++) {
-            for (int col = 0; col < 4; col++) {
-                System.out.print((row * 100 + col) + " ");
-            }
-            System.out.println();
-        }
-        
+        System.out.println("Please select one of the following options");
+        System.out.println("1. Display vending machine opptions");
+        System.out.println();
+        System.out.println("FOR OWNER OF MACHINE");
+        System.out.println("2. Show stock remaining of machine");
+        System.out.println("3. Show total earnings of the machine");
+        System.out.println("Exit");
         int choice = a.nextInt();
-        System.out.println("You selected: " + choice);
+        switch(choice){
+            case 1:
+                vm.displayMenu();
+                break;
+            
+            case 2:
+                vm.showStock();
+                break;
+                
+            
+            case 3:
+                vm.showAccounting();
+                break;
+                
+            default: 
+                break;
+            
+        }
     }
 }

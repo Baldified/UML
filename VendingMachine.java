@@ -3,7 +3,7 @@
  * This class represents a vending machine.
  * @author Dylan Scalia & Bruce Lam
  */
-public class VendingMachine
+public class VendingMachine 
 {
     int currentSelection;
     Stock stock;
@@ -23,7 +23,7 @@ public class VendingMachine
      */
     public void displayMenu()
     {
-        
+        System.out.println("working");
         
     }
     
@@ -66,7 +66,7 @@ public class VendingMachine
      */
     public void showStock()
     {
-        
+        System.out.println("working");
     }
     
     /**
@@ -74,6 +74,6 @@ public class VendingMachine
      */
     public void showAccounting()
     {
-        
+        System.out.println("working");
     }
 }
