@@ -7,27 +7,47 @@
  */
 public class Product
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    public String name;
+    public double price;
+    public int quantity;
+    
     /**
      * Constructor for objects of class Product
      */
-    public Product()
-    {
-        // initialise instance variables
-        x = 0;
+    public Product() {
+        Drink coke = new Drink("coke", 1.99, 10, 250, DrinkType.Sugar);
+        coke.displayProductInfo();
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Constructor to initiate the product super class
      */
-    public int sampleMethod(int y)
+    public Product(String name, double price, int quanity)
     {
-        // put your code here
-        return x + y;
+        this.name = name;
+        this.price = price;
+        this.quantity = quanity;
+    }
+    
+    /**
+     * Method to view the price of a product
+     */
+    public double getProductPrice() {
+        return price;
+    }
+    
+    /**
+     * Method to view the name of a product
+     */
+    public String getProductName() {
+        return name;
+    }
+    
+    /**
+     * Method to display the product info
+     */
+    public void displayProductInfo() {
+        System.out.println("Product: " + name + ", Price: $" + price);
+        System.out.println("Stock: " + quantity);
     }
 }
