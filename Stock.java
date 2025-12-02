@@ -102,7 +102,8 @@ public class Stock
      */
     public void listAllStock()
     {
-        
+        System.out.println(drinkStock);
+        System.out.println(snackStock);
     }
     
     /**
