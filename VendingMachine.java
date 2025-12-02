@@ -8,7 +8,6 @@ public class VendingMachine
 {
     int currentSelection;
     HashMap<Integer, Product> stock;
-    Accounting accounting;
     int confirmation;
     /**
      * Constructor to initiate the vending machine class.
