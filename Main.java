@@ -21,14 +21,7 @@ public class Main
         VendingMachine vm = new VendingMachine();
         
         System.out.println("Welcome to the vending machine");
-
         
-        
-        
-
-        
-       
-
         int choice;
         
         do{
