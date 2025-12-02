@@ -22,39 +22,19 @@ public class Main
         
         System.out.println("Welcome to the vending machine");
 
-        System.out.println("please make a selection");
         
-        for (int row = 1; row <= 5; row++) {
-            for (int col = 0; col < 3; col++) {
-                System.out.print((row * 100 + col) + " ");
-            }
-            System.out.println();
-        }
+        
         
 
+        
         System.out.println("Please select one of the following options");
         System.out.println("1. Display vending machine opptions");
-        System.out.println("4. Exit");
+        System.out.println("2. Exit");
         System.out.println();
         System.out.println("FOR OWNER OF MACHINE");
-        System.out.println("2. Show stock remaining of machine");
-        System.out.println("3. Show total earnings of the machine");
+        System.out.println("3. Show stock remaining of machine");
+        System.out.println("4. Show total earnings of the machine");
 
-        System.out.println("Please select one of the following options");
-        System.out.println("1. Display vending machine opptions");
-        System.out.println("4. Exit");
-        System.out.println();
-        System.out.println("FOR OWNER OF MACHINE");
-        System.out.println("2. Show stock remaining of machine");
-        System.out.println("3. Show total earnings of the machine");
-
-        System.out.println("Please select one of the following options");
-        System.out.println("1. Display vending machine opptions");
-        System.out.println("4. Exit");
-        System.out.println();
-        System.out.println("FOR OWNER OF MACHINE");
-        System.out.println("2. Show stock remaining of machine");
-        System.out.println("3. Show total earnings of the machine");
         int choice = a.nextInt();
         switch(choice){
             case 1:
@@ -64,16 +44,16 @@ public class Main
                 vm.selectItem(itemCode);
                 break;
         
-            case 2:
+            case 3:
                 vm.showStock();
                 break;
                 
             
-            case 3:
+            case 4:
                 vm.showAccounting();
                 break;
                 
-            case 4: 
+            case 2: 
                 System.out.println("Thank you for visiting the machine");
                 break;
                 
