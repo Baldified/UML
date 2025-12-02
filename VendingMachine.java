@@ -50,8 +50,9 @@ public class VendingMachine
      */
     public void confirmSelection() 
     {
-        //switch (currentSelection) 
-            //if(currentSelction
+        System.out.println("Are you sure you want to select" +" "+ currentSelection);
+        System.out.println("(y/n)");
+        
             
         
     }
@@ -59,9 +60,9 @@ public class VendingMachine
     /**
      * Method dispenses item to customer.
      */
-    public void dispenseItem(int numberCode) 
+    public void dispenseItem() 
     {
-        
+        System.out.println( currentSelection + " " + "has been dispensed");
     }
     
     /**
