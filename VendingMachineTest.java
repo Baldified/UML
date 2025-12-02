@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class VendingMachineTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author Bruce Lam
  */
 public class VendingMachineTest
 {

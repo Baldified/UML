@@ -12,14 +12,6 @@ public class Product
     public int quantity;
     
     /**
-     * Constructor for objects of class Product
-     */
-    public Product() {
-        Drink coke = new Drink("coke", 1.99, 10, 250, DrinkType.Sugar);
-        coke.displayProductInfo();
-    }
-    
-    /**
      * Constructor to initiate the product super class
      */
     public Product(String name, double price, int quanity)
