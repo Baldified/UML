@@ -9,7 +9,7 @@ public class Stock
 {
     HashMap<Integer, Drinks> drinkStock;
     HashMap<Integer, Snacks> snackStock;
-
+    String stockName;
     /**
      * Constructor to initialize the stock system of the vending machine
      */
@@ -35,8 +35,42 @@ public class Stock
      * Method to select a stock.
      */
     public void selectStock(String stockName, int number) {
-        if (stockName.equals("Drinks") && drinkStock.containsKey(number)) {
-            System.out.println(drinkStock.containsValue(number)); //not working yet
+        this.stockName = stockName.toLowerCase();
+        
+        /*if (this.stockName.equals("drinks") && drinkStock.containsKey(number)) {
+            System.out.println(drinkStock.get(number));
+        }
+        else if (this.stockName.equals("snacks") && snackStock.containsKey(number)) {
+            System.out.println(snackStock.get(number));
+        }
+        else if (!this.stockName.equals("snacks") && !this.stockName.equals("drinks")) {
+            System.out.println("Invalid stock");
+        }
+        else if (!drinkStock.containsKey(number) && !snackStock.containsKey(number)) {
+            System.out.println("Invalid number selection.");         
+        }
+        */
+       
+        switch (this.stockName.toLowerCase()) {
+            case "drinks":
+                if (drinkStock.containsKey(number)) {
+                    System.out.println(drinkStock.get(number));
+                }
+                else {
+                    System.out.println("Invalid number selection.");
+                }
+                break;
+            case "snacks":
+                if (snackStock.containsKey(number)) {
+                    System.out.println(snackStock.get(number));
+                }
+                else {
+                    System.out.println("Invalid number selection.");
+                }
+                break;
+            default:
+                    System.out.println("Invalid stock.");
+                    break;
         }
     }
     /**
