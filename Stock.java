@@ -7,15 +7,16 @@ import java.util.Map;
  */
 public class Stock
 {
-    HashMap<Integer, Drinks> drinkStock;
-    HashMap<Integer, Snacks> snackStock;
-    String stockName;
+    private HashMap<Integer, Drinks> drinkStock;
+    private HashMap<Integer, Snacks> snackStock;
+    private String stockName;
+    private int number;
     /**
      * Constructor to initialize the stock system of the vending machine
      */
     public Stock()
     {
-        drinkStock = new HashMap<>();
+        /*drinkStock = new HashMap<>();
         
         drinkStock.put(101, Drinks.Soda); // NUMBERS ARE WIP
         drinkStock.put(102, Drinks.Water);
@@ -29,6 +30,7 @@ public class Stock
         snackStock.put(203, Snacks.Chocolate);
         snackStock.put(301, Snacks.Gum);
         snackStock.put(302, Snacks.Dessert);
+        */
     }
     
     /**
@@ -36,7 +38,7 @@ public class Stock
      */
     public void selectStock(String stockName, int number) {
         this.stockName = stockName.toLowerCase();
-        
+        this.number = number;
         /*if (this.stockName.equals("drinks") && drinkStock.containsKey(number)) {
             System.out.println(drinkStock.get(number));
         }
@@ -74,9 +76,17 @@ public class Stock
         }
     }
     /**
-     * Method to add more to a stock.
+     * Method to add more to snack stock.
      */
-    public void addToStock(int number, int amount)
+    public void addToSnackStock(int amount)
+    {   
+        //Snacks.stockName.stockQuantity += amount;
+    }
+    
+    /**
+     * Method to add more to drink stock.
+     */
+    public void addToDrinkStock(int amount)
     {   
         
     }

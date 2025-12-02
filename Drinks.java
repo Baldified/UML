@@ -2,7 +2,11 @@
 /**
  * Drinks stock list
  */
-public enum Drinks
+public class Drinks extends Product
 {
-    Soda, Water, Juice, EnergyDrink
+    public Drinks() {
+        
+    }
+    
+    
 }

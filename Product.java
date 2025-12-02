@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Receipt here.
+ * Write a description of class Product here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Receipt
+public class Product
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Receipt
+     * Constructor for objects of class Product
      */
-    public Receipt()
+    public Product()
     {
         // initialise instance variables
         x = 0;

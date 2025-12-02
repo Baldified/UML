@@ -2,7 +2,7 @@
 /**
  * Snacks stock list
  */
-public enum Snacks
+public class Snacks extends Product
 {
-    Chips, Candy, Chocolate, Gum, Dessert
+    
 }
