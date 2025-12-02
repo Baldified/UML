@@ -3,7 +3,7 @@ import java.util.Map;
 
 /**
  * This class represents the stock system for the vending machine.
- * @author Dylan Scalia & Bruce Lam
+ * @author Bruce Lam
  */
 public class Stock
 {
