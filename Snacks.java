@@ -4,5 +4,7 @@
  */
 public class Snacks extends Product
 {
-    
+    public Snacks() {
+        
+    }
 }
