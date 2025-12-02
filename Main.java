@@ -40,7 +40,6 @@ public class Main
              }
         }
         while(choice>5 || choice<0);
-
         switch(choice){
             case 1:
                 vm.displayMenu();
