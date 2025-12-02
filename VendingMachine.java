@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 /**
  * This class represents a vending machine.
@@ -6,7 +7,7 @@
 public class VendingMachine 
 {
     int currentSelection;
-    Stock stock;
+    HashMap<Integer, Product> stock;
     Accounting accounting;
     int confirmation;
     /**

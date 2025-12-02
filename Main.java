@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * 
+ * @author Dylan Scalia
  */
 public class Main
 {
