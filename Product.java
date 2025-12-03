@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class Product here.
+ * Product class serves as a super class to Drink and Snack classes
  *
  * @author Bruce Lam
  */
@@ -51,6 +51,20 @@ public class Product
      * Method to remove 1 from stock.
      */
     public void removeFromStock() {
-        quantity--;
+        if (quantity > 0) {
+            quantity--;
+        }
+        else {
+            System.out.println("There is no more stock");
+        }
+    }
+    
+    public void addToStock() {
+        if (quantity < 10) {
+            quantity++;
+        }
+        else {
+            System.out.println("The stock is currently full.");
+        }
     }
 }

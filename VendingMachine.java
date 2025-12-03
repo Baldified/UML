@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 /**
  * This class represents a vending machine.
- * @author Dylan Scalia & Bruce Lam
+ * @author Dylan Scalia
  */
 public class VendingMachine 
 {
