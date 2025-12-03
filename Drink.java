@@ -1,20 +1,22 @@
 
 /**
  * Drinks stock list
+ * 
+ * @author Bruce Lam
  */
 public class Drink extends Product
 {
-    public DrinkType drinkType;
+    public DrinkFlavor drinkFlavor;
     public int volume;
-    public Drink(String name, double price, int quantity, int volume, DrinkType drinkType) {
+    public Drink(String name, double price, int quantity, int volume, DrinkFlavor drinkFlavor) {
         super(name, price, quantity);
-        this.drinkType = drinkType;
+        this.drinkFlavor = drinkFlavor;
         this.volume = volume;
     }
     
     public void viewDrink() {
         super.displayProductInfo();
         System.out.println("Volume: " + volume + "ml");
-        System.out.println("Type: " + drinkType);
+        System.out.println("Type: " + drinkFlavor);
     }
 }

@@ -32,7 +32,7 @@ public class Main
         do{
              System.out.println();
              System.out.println("Please select one of the following options");
-             System.out.println("1. Display vending machine opptions");
+             System.out.println("1. Display vending machine options");
              System.out.println("2. Exit");
              System.out.println();
              System.out.println("FOR OWNER OF MACHINE");

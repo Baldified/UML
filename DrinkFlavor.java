@@ -2,10 +2,9 @@
 /**
  * Enumeration class DrinkType - write a description of the enum class here
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Bruce Lam
  */
-public enum DrinkType
+public enum DrinkFlavor
 {
     No_Sugar, Sugar
 }

@@ -2,8 +2,7 @@
 /**
  * Write a description of class Product here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Bruce Lam
  */
 public class Product
 {
