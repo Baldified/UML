@@ -4,7 +4,7 @@ import java.util.Scanner;
  * @author Dylan Scalia
  * The main driver in the class
  */
-public class Main
+public class Main 
 {
     
 
@@ -49,9 +49,11 @@ public class Main
             case 1:
 
                 vm.displayMenu();
-                System.out.print("Enter item code: ");
                 int itemCode = a.nextInt();
-                vm.selectItem(itemCode);
+                if (!vm.selectItem(itemCode)) {
+                    System.out.print("Invalid code");
+                    return;
+                }
                 vm.confirmSelection();
                 a.nextLine();
                 String choose = a.next().trim().toLowerCase();
