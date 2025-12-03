@@ -39,10 +39,15 @@ public class VendingMachine
      * Method to select an item in the stock of the vending machine.
      * @param numberCode Number code of a snack or drink
      */
-    public void selectItem(int numberCode) 
+    public boolean selectItem(int numberCode) 
     {
-        currentSelection = numberCode;
-        System.out.println(currentSelection);
+        
+        
+        if (numberCode < 100 || numberCode > 803 || numberCode % 100 > 3) {
+          return false;
+         }
+        this.currentSelection = numberCode;
+        return true;
     }
     
     /**
