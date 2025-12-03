@@ -29,7 +29,7 @@ public class Main
         
         int choice;
     
-        do{
+        do {
              System.out.println();
              System.out.println("Please select one of the following options");
              System.out.println("1. Display vending machine options");

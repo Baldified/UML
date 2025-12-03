@@ -108,6 +108,7 @@ public class VendingMachine
      */
     public void dispenseItem() 
     {
+        stock.get(currentSelection).removeFromStock();
         System.out.println( currentSelection + " " + "has been dispensed");
     }
     

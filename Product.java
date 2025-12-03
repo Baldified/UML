@@ -39,7 +39,7 @@ public class Product
     }
     
     /**
-     * Method to display the product info
+     * Method to display the product info.
      */
     public String displayProductInfo() {
         System.out.println("Product: " + name + ", Price: $" + price);
@@ -47,6 +47,9 @@ public class Product
         return " ";
     }
     
+    /**
+     * Method to remove 1 from stock.
+     */
     public void removeFromStock() {
         quantity--;
     }
