@@ -6,5 +6,5 @@
  */
 public enum SnackFlavor
 {
-    Salty, Sweet, None
+    Salty, Sweet, Empty
 }

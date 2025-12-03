@@ -34,11 +34,20 @@ public class Product
         return name;
     }
     
+    public int getProductStock() {
+        return quantity;
+    }
+    
     /**
      * Method to display the product info
      */
-    public void displayProductInfo() {
+    public String displayProductInfo() {
         System.out.println("Product: " + name + ", Price: $" + price);
         System.out.println("Stock: " + quantity);
+        return " ";
+    }
+    
+    public void removeFromStock() {
+        quantity--;
     }
 }

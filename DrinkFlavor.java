@@ -6,5 +6,5 @@
  */
 public enum DrinkFlavor
 {
-    No_Sugar, Sugar
+    No_Sugar_Drink, Sugar_Drink
 }

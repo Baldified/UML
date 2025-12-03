@@ -14,9 +14,10 @@ public class Drink extends Product
         this.volume = volume;
     }
     
-    public void viewDrink() {
+    public String displayProductInfo() {
         super.displayProductInfo();
         System.out.println("Volume: " + volume + "ml");
         System.out.println("Type: " + drinkFlavor);
+        return " ";
     }
 }

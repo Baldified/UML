@@ -15,9 +15,10 @@ public class Snack extends Product
         grams = weight;
     }
     
-    public void viewSnack() {
+    public String displayProductInfo() {
         super.displayProductInfo();
         System.out.println("Weight: " + grams + "g");
         System.out.println("Type: " + snackFlavor);
+        return " ";
     }
 }

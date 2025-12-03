@@ -17,10 +17,10 @@ public class VendingMachine
     {
         stock = new HashMap<>();
         
-        Drink coke = new Drink("Coke", 1.99, 10, 250, DrinkFlavor.Sugar);
-        Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar);
-        Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar);
-        Drink energyDrink = new Drink("Energy Drink", 1.49, 10, 350, DrinkFlavor.Sugar);
+        Drink coke = new Drink("Coke", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
+        Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+        Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
+        Drink energyDrink = new Drink("Energy Drink", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
         stock.put(100, coke);
         stock.put(101, juice);
         stock.put(102, water);
@@ -38,7 +38,7 @@ public class VendingMachine
         for (int emptyRow = 3; emptyRow <= 8; emptyRow++) {
             for (int emptyCol = 0; emptyCol < 4; emptyCol++) {
                 int emptyCode = emptyRow * 100 + emptyCol;
-                Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.None);
+                Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.Empty);
                 stock.put(emptyCode, empty);
             }
         }
@@ -49,6 +49,7 @@ public class VendingMachine
      */
     public void displayMenu()
     {
+        System.out.println();
         System.out.println("Make a selection");
         System.out.println();
         
@@ -77,8 +78,6 @@ public class VendingMachine
      */
     public boolean selectItem(int numberCode) 
     {
-        
-        
         if (numberCode < 100 || numberCode > 803 || numberCode % 100 > 3) {
           return false;
          }
@@ -92,11 +91,15 @@ public class VendingMachine
     public void confirmSelection() 
     {
         if (stock.containsKey(currentSelection)) {
+            System.out.println();
             System.out.println("Are you sure you want to select" +" "+ currentSelection + " (" + stock.get(currentSelection).getProductName() + ")");
-            System.out.println("(y/n)");
-        }
-        else {
-            System.out.println("This code is not available");
+            if (stock.containsKey(currentSelection >= 300)){
+                System.out.println("This slot is empty.");
+            }
+            else {
+                System.out.println(stock.get(currentSelection).displayProductInfo());
+                System.out.println("(y/n)");
+            }
         }
     }
     
@@ -112,8 +115,14 @@ public class VendingMachine
      * Method to view the current remaining stock.
      */
     public void showStock()
-    {
-        System.out.println("working");
+    {   
+        System.out.println();
+        System.out.println("Currently in Stock:");
+        for (int allStock : stock.keySet()) {
+            if (!(allStock > 300) && stock.get(allStock).getProductStock() > 0) {
+                System.out.println(stock.get(allStock).getProductName() + ": " + stock.get(allStock).getProductStock());
+            }
+        }
     }
     
     /**
