@@ -49,7 +49,7 @@ public class Main
                     break;
 
                 case 4:
-                    vm.showAccountingHistory();
+                    vm.showAccounting();
                     break;
 
                 case 2: 
@@ -178,7 +178,7 @@ public class Main
             }
         }
         while(choice>5 || choice<0);
-        while (running) {
+        
             switch(choice){
                 case 1:
                     openVendingMachine(vm, a, choice, running);
@@ -189,12 +189,12 @@ public class Main
                     break;
 
                 case 4:
-                    vm.showAccountingHistory();
+                    vm.showAccounting();
                     break;
 
                 case 2: 
                     System.out.println("Thank you for visiting the machine");
-                    running = false;
+                    System.exit(0);
                     break;
 
                 case 5: //Returns back to case 1
@@ -209,4 +209,4 @@ public class Main
             }
         }
     }
-    }
+    
