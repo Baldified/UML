@@ -157,9 +157,14 @@ public class VendingMachine
     /**
      * Method to show sales history of the vending machine.
      */
-    public void showAccounting()
-    {
-        System.out.println(balanceHistory);
+    public void showAccountingHistory()
+    {   
+        if (balanceHistory > 0) {
+            System.out.println("$" + balanceHistory);
+        }
+        else {
+            System.out.println("No sales made.");
+        }
     }
     
     public void addToHistory() {
