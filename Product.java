@@ -59,12 +59,19 @@ public class Product
         }
     }
     
+    /**
+     * Method to 
+     */
     public void addToStock() {
         if (quantity < 10) {
             quantity++;
         }
-        else {
+        else if (quantity >= 10) {
             System.out.println("The stock is currently full.");
         }
+    }
+    
+    public void payForProduct() {
+        
     }
 }

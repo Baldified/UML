@@ -40,47 +40,11 @@ public class Main
         while (running) {
             switch(choice){
                 case 1:
-
-                    vm.displayMenu();
-                    int itemCode = a.nextInt();
-                    if (!vm.selectItem(itemCode)) {
-                        System.out.print("Invalid code \n");
-                        choice = 5;
-                    }
-                    else {
-                        vm.confirmSelection();
-                        a.nextLine();
-                        String choose = a.next().trim().toLowerCase();
-                        if(choose.equals("n"))
-                        {
-                            System.out.println("Come back soon");
-                            running = false;
-                        }else if(choose.equals("y")){
-                            vm.dispenseItem();
-                        }else {
-                            System.out.println("Invalid input. Enter 'y' or 'n'.");
-                        }
-                        while (!choose.equals("y") && !choose.equals("n"));
-                    }
+                    openVendingMachine(vm, a, choice, running);
                     break;
 
                 case 3:
-                    vm.showStock();
-                    System.out.println();
-                    System.out.println("Would you like to return?");
-                    System.out.println("(y/n)");
-
-                    a.nextLine();
-                    String back = a.next().trim().toLowerCase();
-                    if(back.equals("n"))
-                    {
-                        System.out.println("Come back soon");
-                        running = false;
-                    }else if(back.equals("y")){
-                        choice = 1;
-                    }else {
-                        System.out.println("Invalid input. Enter 'y' or 'n'.");
-                    }
+                    stockSystem(vm, a);
                     break;
 
                 case 4:
@@ -89,6 +53,7 @@ public class Main
 
                 case 2: 
                     System.out.println("Thank you for visiting the machine");
+                    running = false;
                     break;
 
                 case 5: //Returns back to case 1
@@ -101,6 +66,99 @@ public class Main
                     break;
 
             }
+        }
+    }
+
+    private static void stockSystem(VendingMachine vm, Scanner a) {
+        vm.showStock();
+
+        System.out.println();
+        System.out.println("Would you like to refill the stock, remove from stock or return?");
+        System.out.println("(refill/remove/return)");
+
+        a.nextLine();
+        String chooseStock = a.next().trim().toLowerCase();
+
+        switch (chooseStock) {
+            case "refill":
+                System.out.println("Please select a stock to refill."); 
+                int addItemCode = a.nextInt();
+
+                if (vm.selectItem(addItemCode)) {
+                    vm.addSelectedStock();
+                } 
+                else {
+                    System.out.println("Invalid item code.");
+                }
+                break;
+
+            case "remove":
+                System.out.println("Please select a stock to remove from");
+                int removeItemCode = a.nextInt();
+
+                if (vm.selectItem(removeItemCode)) {
+                    vm.removeSelectStock();
+                }
+                else {
+                    System.out.println("Invalid item code.");
+                }
+                break;
+
+            case "return":
+
+        }
+    }
+
+    private static void openVendingMachine(VendingMachine vm, Scanner a, int choice, boolean running) {
+        vm.displayMenu();
+        int itemCode = a.nextInt();
+        if (!vm.selectItem(itemCode)) {
+            System.out.print("Invalid code \n");
+            System.out.println("\n----------------------");
+            choice = 5;
+        }
+        else {
+            System.out.println("\n----------------------");
+            vm.confirmSelection();
+            String chooseMenu = a.next().trim().toLowerCase();
+            if(chooseMenu.equals("n"))
+            {
+                System.out.println("\n----------------------");
+                System.out.println("Come back soon");
+                running = false;
+            }else if(chooseMenu.equals("y")){
+                accountingSystem(vm, a, choice);
+            }else {
+                System.out.println("Invalid input. Enter 'y' or 'n'.");
+            }
+        }
+    }
+
+    private static void accountingSystem(VendingMachine vm, Scanner a, int choice) {
+        System.out.println("\n----------------------");
+        System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
+
+        a.nextLine();
+        double insertedMoney = a.nextDouble();
+
+        if (insertedMoney > 0) {
+            vm.insertMoney(insertedMoney);
+            System.out.println();
+            if (vm.balance >= vm.stock.get(vm.currentSelection).getProductPrice()) {
+                System.out.println("\n----------------------");
+                vm.payPrice();
+                vm.addToHistory();
+                vm.dispenseItem();
+                if(vm.balance > 0) {
+                    System.out.printf("Your change is $%.2f", (vm.returnBalance()));
+                    System.out.println();
+                    System.out.println("\n----------------------");
+                    choice = 5;
+                }
+            }
+        }
+        else {
+            System.out.println("No money was inserted");
         }
     }
 }

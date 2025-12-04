@@ -9,6 +9,9 @@ public class VendingMachine
     int currentSelection;
     HashMap<Integer, Product> stock;
     int confirmation;
+    double money;
+    double balance;
+    double balanceHistory;
     /**
      * Constructor to initiate the vending machine class.
      * 
@@ -121,9 +124,34 @@ public class VendingMachine
         System.out.println("Currently in Stock:");
         for (int allStock : stock.keySet()) {
             if (!(allStock > 300) && stock.get(allStock).getProductStock() > 0) {
-                System.out.println(stock.get(allStock).getProductName() + ": " + stock.get(allStock).getProductStock());
+                System.out.println("(" + allStock + ")" + stock.get(allStock).getProductName() + ": " + stock.get(allStock).getProductStock());
             }
         }
+    }
+    
+    public void addSelectedStock() {
+        stock.get(currentSelection).addToStock();
+    }
+    
+    public void removeSelectStock() {
+        stock.get(currentSelection).removeFromStock();
+    }
+    
+    public void insertMoney(double money) {
+         this.money = money;
+         balance += money;
+    }
+    
+    public double returnBalance() {
+        return balance;
+    }
+    
+    public void payPrice() {
+        balance -= stock.get(currentSelection).getProductPrice();
+    }
+    
+    public void clearBalance() {
+        balance = 0;
     }
     
     /**
@@ -131,6 +159,10 @@ public class VendingMachine
      */
     public void showAccounting()
     {
-        System.out.println("working");
+        System.out.println(balanceHistory);
+    }
+    
+    public void addToHistory() {
+        balanceHistory += stock.get(currentSelection).getProductPrice();
     }
 }    
