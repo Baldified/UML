@@ -67,7 +67,7 @@ public class Product
             quantity++;
         }
         else if (quantity >= 10) {
-            System.out.println("The stock is currently full.");
+            System.out.println("The selected stock is currently full.");
         }
     }
     

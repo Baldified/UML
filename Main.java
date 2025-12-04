@@ -114,6 +114,9 @@ public class Main
             System.out.println("\n----------------------");
             
         }
+        else if (itemCode > 300) {
+            System.out.println("This slot is empty.");
+        }
         else {
             System.out.println("\n----------------------");
             vm.confirmSelection();
