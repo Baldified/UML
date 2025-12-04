@@ -6,13 +6,14 @@ import java.util.Scanner;
  */
 public class Main 
 {
+    static boolean running = true;
     /**
      * 
      * 
      * Prints menu with scanner
      */
     public static void main(String[] args){
-        boolean running = true;
+        
 
         Scanner a = new Scanner(System.in);
         VendingMachine vm = new VendingMachine();
@@ -44,7 +45,7 @@ public class Main
                     break;
 
                 case 3:
-                    stockSystem(vm, a);
+                    stockSystem(vm, a,choice,running);
                     break;
 
                 case 4:
@@ -56,12 +57,6 @@ public class Main
                     running = false;
                     break;
 
-                case 5: //Returns back to case 1
-                    if (choice == 5) {
-                        choice = 1;
-                    }
-                    break;
-
                 default: System.out.println("An invalid input has been entered");
                     break;
 
@@ -69,7 +64,7 @@ public class Main
         }
     }
 
-    private static void stockSystem(VendingMachine vm, Scanner a) {
+    private static void stockSystem(VendingMachine vm, Scanner a,int choice,boolean running) {
         vm.showStock();
 
         System.out.println();
@@ -105,6 +100,8 @@ public class Main
                 break;
 
             case "return":
+                returnToMenu(choice, vm, a, running);
+                break;
 
         }
     }
@@ -115,7 +112,7 @@ public class Main
         if (!vm.selectItem(itemCode)) {
             System.out.print("Invalid code \n");
             System.out.println("\n----------------------");
-            choice = 5;
+            
         }
         else {
             System.out.println("\n----------------------");
@@ -127,14 +124,14 @@ public class Main
                 System.out.println("Come back soon");
                 running = false;
             }else if(chooseMenu.equals("y")){
-                accountingSystem(vm, a, choice);
+                accountingSystem(vm, a, choice,running);
             }else {
                 System.out.println("Invalid input. Enter 'y' or 'n'.");
             }
         }
     }
 
-    private static void accountingSystem(VendingMachine vm, Scanner a, int choice) {
+    private static void accountingSystem(VendingMachine vm, Scanner a, int choice,boolean running) {
         System.out.println("\n----------------------");
         System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
 
@@ -149,11 +146,12 @@ public class Main
                 vm.payPrice();
                 vm.addToHistory();
                 vm.dispenseItem();
+
                 if(vm.balance > 0) {
                     System.out.printf("Your change is $%.2f", (vm.returnBalance()));
                     System.out.println();
                     System.out.println("\n----------------------");
-                    choice = 5;
+                    returnToMenu(choice, vm, a, running);
                 }
             }
         }
@@ -161,4 +159,55 @@ public class Main
             System.out.println("No money was inserted");
         }
     }
-}
+    
+    private static void returnToMenu(int choice,VendingMachine vm,Scanner a,boolean running){
+        
+        do {
+            System.out.println();
+            System.out.println("Please select one of the following options");
+            System.out.println("1. Display vending machine options");
+            System.out.println("2. Exit");
+            System.out.println();
+            System.out.println("FOR OWNER OF MACHINE");
+            System.out.println("3. Show stock remaining of machine");
+            System.out.println("4. Show total earnings of the machine");
+            choice = a.nextInt();
+
+            if (choice > 5 || choice < 0) {
+                System.out.println("Invalid choice, please try again");
+            }
+        }
+        while(choice>5 || choice<0);
+        while (running) {
+            switch(choice){
+                case 1:
+                    openVendingMachine(vm, a, choice, running);
+                    break;
+
+                case 3:
+                    stockSystem(vm, a,choice,running);
+                    break;
+
+                case 4:
+                    vm.showAccounting();
+                    break;
+
+                case 2: 
+                    System.out.println("Thank you for visiting the machine");
+                    running = false;
+                    break;
+
+                case 5: //Returns back to case 1
+                    if (choice == 5) {
+                        choice = 1;
+                    }
+                    break;
+
+                default: System.out.println("An invalid input has been entered");
+                    break;
+
+            }
+        }
+    }
+    }
+
