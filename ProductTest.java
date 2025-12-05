@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
  */
 public class ProductTest
 {
-    Product product = new Product("Dylan", 1.50, 1);
+    private Product product;
+    private Product productWithStock;
     /**
      * Default constructor for test class ProductTest
      */
@@ -20,6 +21,13 @@ public class ProductTest
     {
     }
 
+     public void testName() {
+        Product p = new Product("Dylan", 1.50, 1);
+        assertEquals("Dylan", p.getProductName());
+    }
+
+    
+    
     /**
      * Sets up the test fixture.
      *
@@ -28,6 +36,8 @@ public class ProductTest
     @BeforeEach
     public void setUp()
     {
+       product = new Product("Dylan", 1.50, 1);
+       productWithStock = new Product("test", 1.50, 10);  
     }
 
     /**
@@ -43,6 +53,10 @@ public class ProductTest
     @Test
     public void displayProductInfo()
     {
+        String expected = "Product: Dylan, Price: $1.50, Stock: 1"; // match your implementation
+        assertEquals(expected, product.displayProductInfo());
+        
+        
         String displayTest = "Product: " + product.name + ", Price: $" + product.price;
         displayTest += "Stock: " + product.quantity; 
         Product product1 = new Product("Dylan", 1.50, 1);
@@ -51,5 +65,21 @@ public class ProductTest
         product1.removeFromStock();
         product1.addToStock();
     }
+
+    @Test
+    public void getProductName()
+    {
+        Product product1 = new Product("test", 1.50, 10);
+        assertEquals("Dylan", product.getProductName());
+        assertEquals("test", product1.getProductName());
+        String expectedBefore = "Product: test, Price: $1.50, Stock: 10";
+        assertEquals(expectedBefore, product1.displayProductInfo());
+        product1.addToStock();      
+        product1.removeFromStock(); 
+        product1.addToStock();     
+        String expectedAfter = "Product: test, Price: $1.50, Stock: 11";
+        assertEquals(expectedAfter, product1.displayProductInfo());
+    }
 }
+
 
