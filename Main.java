@@ -49,7 +49,7 @@ public class Main
                     break;
 
                 case 3:
-                    stockSystem(vm, a,choice,running);
+                    stockSystem(vm, a,choice);
                     break;
 
                 case 4:
@@ -66,7 +66,7 @@ public class Main
         }
     }
 
-    private static void stockSystem(VendingMachine vm, Scanner a,int choice,boolean running) {
+    private static void stockSystem(VendingMachine vm, Scanner a,int choice) {
         vm.showStock();
 
         System.out.println();
@@ -117,7 +117,7 @@ public class Main
             System.out.println("\n----------------------");
             returnToMenu(choice, vm, a, running);
         }
-        else if (itemCode > 300 || vm.stock.get(itemCode).getProductStock() == 0) {
+        else if (vm.stock.get(itemCode).getProductStock() == 0) {
             System.out.println("This slot is empty.");
             returnToMenu(choice, vm, a, running);
         }
@@ -138,7 +138,7 @@ public class Main
         }
     }
 
-    private static void accountingSystem(VendingMachine vm, Scanner a, int choice,boolean running) {
+    private static void accountingSystem(VendingMachine vm, Scanner a, int choice, boolean running) {
         System.out.println("----------------------");
         System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
 
@@ -196,7 +196,7 @@ public class Main
                 break;
 
             case 3:
-                stockSystem(vm, a,choice,running);
+                stockSystem(vm, a,choice);
                 break;
 
             case 4:

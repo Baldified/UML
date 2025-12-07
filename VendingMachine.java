@@ -13,15 +13,29 @@ public class VendingMachine
     double balance;
     double balanceHistory;
 
-    Drink coke = new Drink("Coke", 1.99, 3, 250, DrinkFlavor.Sugar_Drink);
+    // Layer 1
+    Drink coke = new Drink("Coke", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
     Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
     Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
-    Drink energyDrink = new Drink("Energy Drink", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+    Drink monster = new Drink("Monster", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
 
+    // Layer 2
+    Drink sprite = new Drink("Sprite", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
+    Drink fanta = new Drink("Fanta", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+    Drink dietCoke = new Drink("Diet Coke", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
+    Drink coffee = new Drink("Coffee", 1.49, 10, 350, DrinkFlavor.No_Sugar_Drink);
+
+    // Layer 3
     Snack chips = new Snack("Lays", 3.00, 10, 200, SnackFlavor.Salty);
     Snack candy = new Snack("Skittles", 2.75, 10, 250, SnackFlavor.Sweet);
     Snack chocolate = new Snack("Kitkat", 2.75, 10, 100, SnackFlavor.Sweet);
     Snack gum = new Snack("Bubble Gum", 2.00, 10, 200, SnackFlavor.Sweet);
+
+    // Layer 4
+    Snack pringles = new Snack("Pringles", 3.00, 10, 200, SnackFlavor.Salty);
+    Snack cake = new Snack("Cake", 2.75, 10, 250, SnackFlavor.Sweet);
+    Snack tootsie = new Snack("Tootsie Roll", 2.75, 10, 100, SnackFlavor.Sweet);
+    Snack gummy = new Snack("Gummy Worms", 2.00, 10, 200, SnackFlavor.Sweet);
 
     Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.Empty);
     /**
@@ -32,17 +46,31 @@ public class VendingMachine
     {
         stock = new HashMap<>();
 
+        // Layer 1
         stock.put(100, coke);
         stock.put(101, juice);
         stock.put(102, water);
-        stock.put(103, energyDrink);
+        stock.put(103, monster);
 
-        stock.put(200, chips);
-        stock.put(201, candy);
-        stock.put(202, chocolate);
-        stock.put(203, gum);
+        // Layer 2
+        stock.put(200, sprite);
+        stock.put(201, fanta);
+        stock.put(202, dietCoke);
+        stock.put(203, coffee);
 
-        for (int emptyRow = 3; emptyRow <= 8; emptyRow++) {
+        // Layer 3
+        stock.put(300, chips);
+        stock.put(301, candy);
+        stock.put(302, chocolate);
+        stock.put(303, gum);
+
+        // Layer 4
+        stock.put(400, pringles);
+        stock.put(401, cake);
+        stock.put(402, tootsie);
+        stock.put(403, gummy);
+
+        for (int emptyRow = 5; emptyRow <= 6; emptyRow++) {
             for (int emptyCol = 0; emptyCol < 4; emptyCol++) {
                 int emptyCode = emptyRow * 100 + emptyCol;
                 stock.put(emptyCode, empty);
@@ -58,20 +86,15 @@ public class VendingMachine
         System.out.println("Make a selection");
         System.out.println();
 
-        for (int row = 1; row <= 8; row++) {
+        for (int row = 1; row <= 6; row++) {
             for (int col = 0; col < 4; col++) {
                 int showProductCode = row * 100 + col;
 
-                if (showProductCode < 104 || showProductCode >= 200 || showProductCode < 204) {
-                    if (stock.get(showProductCode).getProductStock() == 0) {
-                        stock.put(showProductCode, empty);
-                    }
-                    System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
-                    showProductCode++;
+                if (stock.get(showProductCode).getProductStock() == 0) {
+                    stock.put(showProductCode, empty);
                 }
-                else {
-                    System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
-                } 
+                System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
+                showProductCode++;
             }
             System.out.println();
         }
@@ -126,7 +149,7 @@ public class VendingMachine
         System.out.println();
         System.out.println("Currently in Stock:");
         for (int allStock : stock.keySet()) {
-            if (!(allStock > 300) && stock.get(allStock).getProductStock() > 0) {
+            if (stock.get(allStock).getProductStock() > 0) {
                 System.out.println("(" + allStock + ")" + stock.get(allStock).getProductName() + ": " + stock.get(allStock).getProductStock());
             }
         }
