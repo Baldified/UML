@@ -1,4 +1,4 @@
- import java.util.HashMap;
+import java.util.HashMap;
 
 /**
  * This class represents a vending machine.
@@ -12,6 +12,18 @@ public class VendingMachine
     double money;
     double balance;
     double balanceHistory;
+
+    Drink coke = new Drink("Coke", 1.99, 3, 250, DrinkFlavor.Sugar_Drink);
+    Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+    Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
+    Drink energyDrink = new Drink("Energy Drink", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+
+    Snack chips = new Snack("Lays", 3.00, 10, 200, SnackFlavor.Salty);
+    Snack candy = new Snack("Skittles", 2.75, 10, 250, SnackFlavor.Sweet);
+    Snack chocolate = new Snack("Kitkat", 2.75, 10, 100, SnackFlavor.Sweet);
+    Snack gum = new Snack("Bubble Gum", 2.00, 10, 200, SnackFlavor.Sweet);
+
+    Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.Empty);
     /**
      * Constructor to initiate the vending machine class.
      * 
@@ -19,29 +31,20 @@ public class VendingMachine
     public VendingMachine()
     {
         stock = new HashMap<>();
-        
-        Drink coke = new Drink("Coke", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
-        Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
-        Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
-        Drink energyDrink = new Drink("Energy Drink", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+
         stock.put(100, coke);
         stock.put(101, juice);
         stock.put(102, water);
         stock.put(103, energyDrink);
-        
-        Snack chips = new Snack("Lays", 3.00, 10, 200, SnackFlavor.Salty);
-        Snack candy = new Snack("Skittles", 2.75, 10, 250, SnackFlavor.Sweet);
-        Snack chocolate = new Snack("Kitkat", 2.75, 10, 100, SnackFlavor.Sweet);
-        Snack gum = new Snack("Bubble Gum", 2.00, 10, 200, SnackFlavor.Sweet);
+
         stock.put(200, chips);
         stock.put(201, candy);
         stock.put(202, chocolate);
         stock.put(203, gum);
-        
+
         for (int emptyRow = 3; emptyRow <= 8; emptyRow++) {
             for (int emptyCol = 0; emptyCol < 4; emptyCol++) {
                 int emptyCode = emptyRow * 100 + emptyCol;
-                Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.Empty);
                 stock.put(emptyCode, empty);
             }
         }
@@ -52,19 +55,19 @@ public class VendingMachine
      */
     public void displayMenu()
     {
-        System.out.println();
         System.out.println("Make a selection");
         System.out.println();
-        
+
         for (int row = 1; row <= 8; row++) {
             for (int col = 0; col < 4; col++) {
                 int showProductCode = row * 100 + col;
-                
+
                 if (showProductCode < 104 || showProductCode >= 200 || showProductCode < 204) {
-                    
-                        System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
-                        showProductCode++;
-                    
+                    if (stock.get(showProductCode).getProductStock() == 0) {
+                        stock.put(showProductCode, empty);
+                    }
+                    System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
+                    showProductCode++;
                 }
                 else {
                     System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
@@ -74,7 +77,7 @@ public class VendingMachine
         }
         System.out.print("Enter code: ");
     }
-    
+
     /**
      * Method to select an item in the stock of the vending machine.
      * @param numberCode Number code of a snack or drink
@@ -82,12 +85,12 @@ public class VendingMachine
     public boolean selectItem(int numberCode) 
     {
         if (numberCode < 100 || numberCode > 803 || numberCode % 100 > 3) {
-          return false;
-         }
+            return false;
+        }
         this.currentSelection = numberCode;
         return true;
     }
-    
+
     /**
      * Method that confirms a selection.
      */
@@ -105,7 +108,7 @@ public class VendingMachine
             }
         }
     }
-    
+
     /**
      * Method dispenses item to customer.
      */
@@ -114,7 +117,7 @@ public class VendingMachine
         stock.get(currentSelection).removeFromStock();
         System.out.println( currentSelection + " " + "has been dispensed");
     }
-    
+
     /**
      * Method to view the current remaining stock.
      */
@@ -128,40 +131,40 @@ public class VendingMachine
             }
         }
     }
-    
+
     public void addSelectedStock() {
         stock.get(currentSelection).addToStock();
     }
-    
+
     public void removeSelectStock() {
         stock.get(currentSelection).removeFromStock();
     }
-    
+
     public void insertMoney(double money) {
-         this.money = money;
-         balance += money;
+        this.money = money;
+        balance += money;
     }
-    
+
     public double returnBalance() {
         return balance;
     }
-    
+
     public void payPrice() {
         balance -= stock.get(currentSelection).getProductPrice();
     }
-    
+
     public void clearBalance() {
         balance = 0;
     }
-    
+
     /**
      * Method to show sales history of the vending machine.
      */
-    public void showAccounting()
+    public double showAccounting()
     {
-        System.out.println(balanceHistory);
+        return balanceHistory;
     }
-    
+
     public void addToHistory() {
         balanceHistory += stock.get(currentSelection).getProductPrice();
     }

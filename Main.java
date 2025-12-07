@@ -13,7 +13,6 @@ public class Main
      * Prints menu with scanner
      */
     public static void main(String[] args){
-        
 
         Scanner a = new Scanner(System.in);
         VendingMachine vm = new VendingMachine();
@@ -44,17 +43,20 @@ public class Main
                     openVendingMachine(vm, a, choice, running);
                     break;
 
+                case 2: 
+                    System.out.println("Thank you for visiting the machine");
+                    running = false;
+                    break;
+
                 case 3:
                     stockSystem(vm, a,choice,running);
                     break;
 
                 case 4:
-                    vm.showAccounting();
-                    break;
-
-                case 2: 
-                    System.out.println("Thank you for visiting the machine");
-                    running = false;
+                    System.out.println("\n----------------------");
+                    System.out.print("$" + vm.showAccounting());
+                    System.out.println();
+                    returnToMenu(choice, vm, a, running);
                     break;
 
                 default: System.out.println("An invalid input has been entered");
@@ -107,15 +109,17 @@ public class Main
     }
 
     private static void openVendingMachine(VendingMachine vm, Scanner a, int choice, boolean running) {
+        System.out.println("\n----------------------");
         vm.displayMenu();
         int itemCode = a.nextInt();
         if (!vm.selectItem(itemCode)) {
             System.out.print("Invalid code \n");
             System.out.println("\n----------------------");
-            
+            returnToMenu(choice, vm, a, running);
         }
-        else if (itemCode > 300) {
+        else if (itemCode > 300 || vm.stock.get(itemCode).getProductStock() == 0) {
             System.out.println("This slot is empty.");
+            returnToMenu(choice, vm, a, running);
         }
         else {
             System.out.println("\n----------------------");
@@ -135,7 +139,7 @@ public class Main
     }
 
     private static void accountingSystem(VendingMachine vm, Scanner a, int choice,boolean running) {
-        System.out.println("\n----------------------");
+        System.out.println("----------------------");
         System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
 
         a.nextLine();
@@ -143,7 +147,6 @@ public class Main
 
         if (insertedMoney > 0) {
             vm.insertMoney(insertedMoney);
-            System.out.println();
             if (vm.balance >= vm.stock.get(vm.currentSelection).getProductPrice()) {
                 System.out.println("\n----------------------");
                 vm.payPrice();
@@ -153,7 +156,6 @@ public class Main
                 if(vm.balance > 0) {
                     System.out.printf("Your change is $%.2f", (vm.returnBalance()));
                     System.out.println();
-                    System.out.println("\n----------------------");
                     returnToMenu(choice, vm, a, running);
                 }
             }
@@ -162,11 +164,12 @@ public class Main
             System.out.println("No money was inserted");
         }
     }
-    
-    private static void returnToMenu(int choice,VendingMachine vm,Scanner a,boolean running){
-        
+
+    private static void returnToMenu(int choice, VendingMachine vm, Scanner a, boolean running){
+        vm.clearBalance();
+        choice = 0;
         do {
-            System.out.println();
+            System.out.println("\n----------------------");
             System.out.println("Please select one of the following options");
             System.out.println("1. Display vending machine options");
             System.out.println("2. Exit");
@@ -181,35 +184,32 @@ public class Main
             }
         }
         while(choice>5 || choice<0);
-        
-            switch(choice){
-                case 1:
-                    openVendingMachine(vm, a, choice, running);
-                    break;
 
-                case 3:
-                    stockSystem(vm, a,choice,running);
-                    break;
+        switch(choice){
+            case 1:
+                openVendingMachine(vm, a, choice, running);
+                break;
 
-                case 4:
-                    vm.showAccounting();
-                    break;
+            case 2: 
+                System.out.println("Thank you for visiting the machine");
+                running = false;
+                break;
 
-                case 2: 
-                    System.out.println("Thank you for visiting the machine");
-                    System.exit(0);
-                    break;
+            case 3:
+                stockSystem(vm, a,choice,running);
+                break;
 
-                case 5: //Returns back to case 1
-                    if (choice == 5) {
-                        choice = 1;
-                    }
-                    break;
+            case 4:
+                System.out.println("\n----------------------");
+                System.out.print("$" + vm.showAccounting());
+                System.out.println();
+                returnToMenu(choice, vm, a, running);
+                break;
 
-                default: System.out.println("An invalid input has been entered");
-                    break;
+            default: System.out.println("An invalid input has been entered");
+                break;
 
-            }
         }
     }
+}
 
