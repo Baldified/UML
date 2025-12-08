@@ -14,7 +14,7 @@ public class VendingMachine
     double balanceHistory;
 
     // Layer 1
-    Drink coke = new Drink("Coke", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
+    Drink coke = new Drink("Coke", 1.99, 2, 250, DrinkFlavor.Sugar_Drink);
     Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
     Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
     Drink monster = new Drink("Monster", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
@@ -37,7 +37,7 @@ public class VendingMachine
     Snack tootsie = new Snack("Tootsie Roll", 2.75, 10, 100, SnackFlavor.Sweet);
     Snack gummy = new Snack("Gummy Worms", 2.00, 10, 200, SnackFlavor.Sweet);
 
-    Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.Empty);
+    Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.None);
     /**
      * Constructor to initiate the vending machine class.
      * 
@@ -90,11 +90,13 @@ public class VendingMachine
             for (int col = 0; col < 4; col++) {
                 int showProductCode = row * 100 + col;
 
-                if (stock.get(showProductCode).getProductStock() == 0) {
-                    stock.put(showProductCode, empty);
+                if (stock.get(showProductCode).getProductStock() == 0 && stock.get(showProductCode).getProductName() != "Empty") {
+                    System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + "(empty)) ");
+                    showProductCode++;
+                } else {
+                    System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
+                    showProductCode++;
                 }
-                System.out.print(showProductCode + "(" + stock.get(showProductCode).getProductName() + ") ");
-                showProductCode++;
             }
             System.out.println();
         }
@@ -149,7 +151,7 @@ public class VendingMachine
         System.out.println();
         System.out.println("Currently in Stock:");
         for (int allStock : stock.keySet()) {
-            if (stock.get(allStock).getProductStock() > 0) {
+            if (stock.get(allStock).getProductName() != "Empty") {
                 System.out.println("(" + allStock + ")" + stock.get(allStock).getProductName() + ": " + stock.get(allStock).getProductStock());
             }
         }

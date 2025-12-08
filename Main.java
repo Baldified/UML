@@ -40,7 +40,7 @@ public class Main
         while (running) {
             switch(choice){
                 case 1:
-                    openVendingMachine(vm, a, choice, running);
+                    openVendingMachine(vm, a, choice);
                     break;
 
                 case 2: 
@@ -108,7 +108,7 @@ public class Main
         }
     }
 
-    private static void openVendingMachine(VendingMachine vm, Scanner a, int choice, boolean running) {
+    private static void openVendingMachine(VendingMachine vm, Scanner a, int choice) {
         System.out.println("\n----------------------");
         vm.displayMenu();
         int itemCode = a.nextInt();
@@ -127,25 +127,42 @@ public class Main
             String chooseMenu = a.next().trim().toLowerCase();
             if(chooseMenu.equals("n"))
             {
-                System.out.println("\n----------------------");
-                System.out.println("Come back soon");
-                running = false;
+                returnToMenu(choice, vm, a, running);
             }else if(chooseMenu.equals("y")){
-                accountingSystem(vm, a, choice,running);
+                accountingSystem(vm, a, choice);
             }else {
                 System.out.println("Invalid input. Enter 'y' or 'n'.");
             }
         }
     }
 
-    private static void accountingSystem(VendingMachine vm, Scanner a, int choice, boolean running) {
+    private static void accountingSystem(VendingMachine vm, Scanner a, int choice) {
         System.out.println("----------------------");
         System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
 
         a.nextLine();
         double insertedMoney = a.nextDouble();
 
-        if (insertedMoney > 0) {
+        if (insertedMoney >= vm.stock.get(vm.currentSelection).getProductPrice()) {
+            payingSystem(vm, a, insertedMoney, choice);
+        } 
+        else if (insertedMoney == 0 ){
+            System.out.println("No money was inserted");
+            a.nextLine();
+            payingSystem(vm, a, insertedMoney, choice);
+        } 
+        else {
+            System.out.println("Not enough money inserted");
+            System.out.println("----------------------");
+            System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
+            a.nextLine();
+            payingSystem(vm, a, insertedMoney, choice);
+        }
+
+    }
+    
+    private static void payingSystem(VendingMachine vm, Scanner a, double insertedMoney, int choice) {
+        if (insertedMoney >= vm.stock.get(vm.currentSelection).getProductPrice()) {
             vm.insertMoney(insertedMoney);
             if (vm.balance >= vm.stock.get(vm.currentSelection).getProductPrice()) {
                 System.out.println("\n----------------------");
@@ -159,10 +176,7 @@ public class Main
                     returnToMenu(choice, vm, a, running);
                 }
             }
-        }
-        else {
-            System.out.println("No money was inserted");
-        }
+        } 
     }
 
     private static void returnToMenu(int choice, VendingMachine vm, Scanner a, boolean running){
@@ -187,7 +201,7 @@ public class Main
 
         switch(choice){
             case 1:
-                openVendingMachine(vm, a, choice, running);
+                openVendingMachine(vm, a, choice);
                 break;
 
             case 2: 
