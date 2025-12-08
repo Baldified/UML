@@ -1,7 +1,7 @@
 
 /**
- * Product class serves as a super class to Drink and Snack classes
- *
+ * Product class serves as a super class to Drink and Snack classes.
+ * Has fields such as name, price, and quantity.
  * @author Bruce Lam
  */
 public class Product
@@ -11,7 +11,10 @@ public class Product
     public int quantity;
     
     /**
-     * Constructor to initiate the product super class
+     * Constructor to create a new Product object.
+     * @param name The name given to a product.
+     * @param price The price given to a product.
+     * @param quantity The quantity amount of a certain product.
      */
     public Product(String name, double price, int quanity)
     {
@@ -21,19 +24,22 @@ public class Product
     }
     
     /**
-     * Method to view the price of a product
+     * Method to view the price of a product.
      */
     public double getProductPrice() {
         return price;
     }
     
     /**
-     * Method to view the name of a product
+     * Method to view the name of a product.
      */
     public String getProductName() {
         return name;
     }
     
+    /**
+     * Method to view the quantity of a product.
+     */ 
     public int getProductStock() {
         return quantity;
     }
@@ -55,12 +61,12 @@ public class Product
             quantity--;
         }
         else {
-            System.out.println("There is no more stock");
+            System.out.println("There is nothing to remove from.");
         }
     }
     
     /**
-     * Method to 
+     * Method to add 1 to stock.
      */
     public void addToStock() {
         if (quantity < 10) {
@@ -69,9 +75,5 @@ public class Product
         else if (quantity >= 10) {
             System.out.println("The selected stock is currently full.");
         }
-    }
-    
-    public void payForProduct() {
-        
     }
 }

@@ -2,7 +2,8 @@ import java.util.HashMap;
 
 /**
  * This class represents a vending machine.
- * @author Dylan Scalia
+ * Has fields such as currentSelection, stock, confirmation, money, balance, and balanceHistory.
+ * @author Dylan Scalia & Bruce Lam
  */
 public class VendingMachine 
 {
@@ -11,19 +12,19 @@ public class VendingMachine
     int confirmation;
     double money;
     double balance;
-    double balanceHistory;
+    double salesHistory;
 
     // Layer 1
-    Drink coke = new Drink("Coke", 1.99, 2, 250, DrinkFlavor.Sugar_Drink);
-    Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
-    Drink water = new Drink("Water", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
-    Drink monster = new Drink("Monster", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
+    Drink coke = new Drink("Coke", 1.99, 2, 250, DrinkType.Sugar_Drink);
+    Drink juice = new Drink("Juice", 1.49, 10, 350, DrinkType.Sugar_Drink);
+    Drink water = new Drink("Water", 1.00, 10, 300, DrinkType.No_Sugar_Drink);
+    Drink monster = new Drink("Monster", 1.49, 10, 350, DrinkType.Sugar_Drink);
 
     // Layer 2
-    Drink sprite = new Drink("Sprite", 1.99, 10, 250, DrinkFlavor.Sugar_Drink);
-    Drink fanta = new Drink("Fanta", 1.49, 10, 350, DrinkFlavor.Sugar_Drink);
-    Drink dietCoke = new Drink("Diet Coke", 1.00, 10, 300, DrinkFlavor.No_Sugar_Drink);
-    Drink coffee = new Drink("Coffee", 1.49, 10, 350, DrinkFlavor.No_Sugar_Drink);
+    Drink sprite = new Drink("Sprite", 1.99, 10, 250, DrinkType.Sugar_Drink);
+    Drink fanta = new Drink("Fanta", 1.49, 10, 350, DrinkType.Sugar_Drink);
+    Drink dietCoke = new Drink("Diet Coke", 1.00, 10, 300, DrinkType.No_Sugar_Drink);
+    Drink coffee = new Drink("Coffee", 1.49, 10, 350, DrinkType.No_Sugar_Drink);
 
     // Layer 3
     Snack chips = new Snack("Lays", 3.00, 10, 200, SnackFlavor.Salty);
@@ -39,8 +40,8 @@ public class VendingMachine
 
     Snack empty = new Snack("Empty", 0, 0, 0, SnackFlavor.None);
     /**
-     * Constructor to initiate the vending machine class.
-     * 
+     * Constructor to create a new VendingMachine object.
+     * Presets the items inside the vending machine.
      */
     public VendingMachine()
     {
@@ -79,7 +80,7 @@ public class VendingMachine
     }
 
     /**
-     *Method to prompt the menu in Main class.
+     *Method to prompt the menu.
      */
     public void displayMenu()
     {
@@ -104,8 +105,8 @@ public class VendingMachine
     }
 
     /**
-     * Method to select an item in the stock of the vending machine.
-     * @param numberCode Number code of a snack or drink
+     * Method to select an item from the vending machine.
+     * @param numberCode Number code of a product.
      */
     public boolean selectItem(int numberCode) 
     {
@@ -117,7 +118,7 @@ public class VendingMachine
     }
 
     /**
-     * Method that confirms a selection.
+     * Method to confirm a selection.
      */
     public void confirmSelection() 
     {
@@ -135,7 +136,7 @@ public class VendingMachine
     }
 
     /**
-     * Method dispenses item to customer.
+     * Method to dispense an item to the user.
      */
     public void dispenseItem() 
     {
@@ -156,41 +157,63 @@ public class VendingMachine
             }
         }
     }
-
-    public void addSelectedStock() {
+    
+    /**
+     * Method to add to a selected stock.
+     */
+    public void addToSelectedStock() {
         stock.get(currentSelection).addToStock();
     }
-
-    public void removeSelectStock() {
+    
+    /**
+     * Method to remove from a selected stock.
+     */
+    public void removeFromSelectedStock() {
         stock.get(currentSelection).removeFromStock();
     }
-
+    
+    /**
+     * Method to insert money into vending machine.
+     * @param money The amount of money inserted in the vending machine.
+     */
     public void insertMoney(double money) {
         this.money = money;
         balance += money;
     }
-
+    
+    /**
+     * Method to return the vending machine balance.
+     */
     public double returnBalance() {
         return balance;
     }
 
+    /**
+     * Method to pay for a product.
+     */
     public void payPrice() {
         balance -= stock.get(currentSelection).getProductPrice();
     }
-
+    
+    /**
+     * Method to clear the vending machine balance.
+     */
     public void clearBalance() {
         balance = 0;
     }
-
+    
     /**
      * Method to show sales history of the vending machine.
      */
-    public double showAccounting()
+    public double showAccountingHistory()
     {
-        return balanceHistory;
+        return salesHistory;
     }
-
+    
+    /**
+     * Method to add a sales to the sales history.
+     */
     public void addToHistory() {
-        balanceHistory += stock.get(currentSelection).getProductPrice();
+        salesHistory += stock.get(currentSelection).getProductPrice();
     }
 }    

@@ -1,7 +1,6 @@
 
 /**
- * Enumeration class SnackType - write a description of the enum class here
- *
+ * Enumeration class SnackFlavor for snack flavors.
  * @author Bruce Lam
  */
 public enum SnackFlavor

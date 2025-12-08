@@ -61,7 +61,6 @@ public class ProductTest
         displayTest += "Stock: " + product.quantity; 
         Product product1 = new Product("Dylan", 1.50, 1);
         assertEquals(product, product1.displayProductInfo());
-        product1.payForProduct();
         product1.removeFromStock();
         product1.addToStock();
     }
