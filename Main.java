@@ -24,6 +24,93 @@ public class Main
     }
 
     /**
+     * Method to open the menu of the vending machine.
+     * @param vm The variable name of the vending machine.
+     * @param a The variable name of the scanner.
+     * @param choice The inputted choice of the user.
+     */
+    private static void openMenu( VendingMachine vm, Scanner a, int choice){
+        vm.clearBalance();
+        do {
+            System.out.println("\n----------------------");
+            System.out.println("Please select one of the following options");
+            System.out.println("1. Display vending machine options");
+            System.out.println("2. Exit");
+            System.out.println();
+            System.out.println("FOR OWNER OF MACHINE");
+            System.out.println("3. Show stock remaining of machine");
+            System.out.println("4. Show total earnings of the machine");
+            choice = a.nextInt();
+
+            if (choice > 5 || choice < 0) {
+                System.out.println("Invalid choice, please try again");
+            }
+        }
+        while(choice>5 || choice<0);
+        switch(choice){
+            case 1:
+                openChoiceSelection(vm, a, choice);
+                break;
+
+            case 2: 
+                System.out.println("Thank you for visiting the machine");
+                System.exit(0);
+                break;
+
+            case 3:
+                stockSystem(vm, a,choice);
+                break;
+
+            case 4:
+                System.out.println("\n----------------------");
+                System.out.print("$" + vm.showAccountingHistory());
+                System.out.println();
+                openMenu(vm, a, choice);
+                break;
+
+            default: System.out.println("An invalid input has been entered");
+                break;
+
+        }
+    }
+    
+    /**
+     * Method to open choice selection of the vending machine.
+     * @param vm The variable name of the vending machine.
+     * @param a The variable name of the scanner.
+     * @param choice The inputted choice of the user.
+     */
+    private static void openChoiceSelection(VendingMachine vm, Scanner a, int choice) {
+        System.out.println("\n----------------------");
+        vm.displayMenu();
+        int itemCode = a.nextInt();
+        if (!vm.selectItem(itemCode)) {
+            System.out.print("Invalid code \n");
+            System.out.println("\n----------------------");
+            openMenu(vm, a, choice);
+        }
+        else if (vm.stock.get(itemCode).getProductStock() == 0) {
+            System.out.println("\n----------------------");
+            System.out.println("This slot is empty.");
+            System.out.println("Returning back to Menu");
+            openMenu(vm, a, choice);
+        }
+        else {
+            System.out.println("\n----------------------");
+            vm.confirmSelection();
+            String chooseMenu = a.next().trim().toLowerCase();
+            if(chooseMenu.equals("n"))
+            {
+                openMenu(vm, a, choice);
+            }else if(chooseMenu.equals("y")){
+                accountingSystem(vm, a, choice);
+            }else {
+                System.out.println("Invalid input. Enter 'y' or 'n'.");
+            }
+        }
+    }
+
+    /**
      * Method to open the stock system of the vending machine.
      * @param vm The variable name of the vending machine.
      * @param a The variable name of the scanner.
@@ -70,42 +157,6 @@ public class Main
                 openMenu(vm, a, choice);
                 break;
 
-        }
-    }
-
-    /**
-     * Method to open choice selection of the vending machine.
-     * @param vm The variable name of the vending machine.
-     * @param a The variable name of the scanner.
-     * @param choice The inputted choice of the user.
-     */
-    private static void openChoiceSelection(VendingMachine vm, Scanner a, int choice) {
-        System.out.println("\n----------------------");
-        vm.displayMenu();
-        int itemCode = a.nextInt();
-        if (!vm.selectItem(itemCode)) {
-            System.out.print("Invalid code \n");
-            System.out.println("\n----------------------");
-            openMenu(vm, a, choice);
-        }
-        else if (vm.stock.get(itemCode).getProductStock() == 0) {
-            System.out.println("\n----------------------");
-            System.out.println("This slot is empty.");
-            System.out.println("Returning back to Menu");
-            openMenu(vm, a, choice);
-        }
-        else {
-            System.out.println("\n----------------------");
-            vm.confirmSelection();
-            String chooseMenu = a.next().trim().toLowerCase();
-            if(chooseMenu.equals("n"))
-            {
-                openMenu(vm, a, choice);
-            }else if(chooseMenu.equals("y")){
-                accountingSystem(vm, a, choice);
-            }else {
-                System.out.println("Invalid input. Enter 'y' or 'n'.");
-            }
         }
     }
 
@@ -163,57 +214,6 @@ public class Main
                 }
             }
         } 
-    }
-
-    /**
-     * Method to open the menu of the vending machine.
-     * @param vm The variable name of the vending machine.
-     * @param a The variable name of the scanner.
-     * @param choice The inputted choice of the user.
-     */
-    private static void openMenu( VendingMachine vm, Scanner a, int choice){
-        vm.clearBalance();
-        do {
-            System.out.println("\n----------------------");
-            System.out.println("Please select one of the following options");
-            System.out.println("1. Display vending machine options");
-            System.out.println("2. Exit");
-            System.out.println();
-            System.out.println("FOR OWNER OF MACHINE");
-            System.out.println("3. Show stock remaining of machine");
-            System.out.println("4. Show total earnings of the machine");
-            choice = a.nextInt();
-
-            if (choice > 5 || choice < 0) {
-                System.out.println("Invalid choice, please try again");
-            }
-        }
-        while(choice>5 || choice<0);
-        switch(choice){
-            case 1:
-                openChoiceSelection(vm, a, choice);
-                break;
-
-            case 2: 
-                System.out.println("Thank you for visiting the machine");
-                System.exit(0);
-                break;
-
-            case 3:
-                stockSystem(vm, a,choice);
-                break;
-
-            case 4:
-                System.out.println("\n----------------------");
-                System.out.print("$" + vm.showAccountingHistory());
-                System.out.println();
-                openMenu(vm, a, choice);
-                break;
-
-            default: System.out.println("An invalid input has been entered");
-                break;
-
-        }
     }
 }
 
