@@ -146,17 +146,15 @@ public class Main
         if (insertedMoney >= vm.stock.get(vm.currentSelection).getProductPrice()) {
             payingSystem(vm, a, insertedMoney, choice);
         } 
-        else if (insertedMoney == 0 ){
+        else if (insertedMoney == 0){
+            System.out.println("----------------------");
             System.out.println("No money was inserted");
-            a.nextLine();
-            payingSystem(vm, a, insertedMoney, choice);
+            System.out.println("Returning back to choices");
         } 
         else {
+            System.out.println("\n----------------------");
             System.out.println("Not enough money inserted");
-            System.out.println("----------------------");
-            System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
-            a.nextLine();
-            payingSystem(vm, a, insertedMoney, choice);
+            System.out.println("Returning back to choices");
         }
 
     }
