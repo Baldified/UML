@@ -1,13 +1,14 @@
 
 /**
  * Snack class serves as a class to create snack objects.
- * Has fields such as snackFlavor and grams.
+ * Has fields such as snackFlavor, grams, and snackDetails.
  * @author Bruce Lam
  */
 public class Snack extends Product
 {
     public SnackFlavor snackFlavor;
     public int grams;
+    public String snackDetails;
     /**
      * Constructor to create a new Snack object.
      * @param name The name given to a snack.
@@ -26,9 +27,10 @@ public class Snack extends Product
      * Method to display the snack info.
      */
     public String displayProductInfo() {
-        super.displayProductInfo();
-        System.out.println("Weight: " + grams + "g");
-        System.out.println("Type: " + snackFlavor);
-        return " ";
+        snackDetails = (super.displayProductInfo()
+                        + "\nWeight: " + grams + "g"
+                        + "\nType: " + snackFlavor);
+        return snackDetails;
     }
+    
 }

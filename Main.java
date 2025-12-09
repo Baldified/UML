@@ -71,7 +71,9 @@ public class Main
                 break;
 
             default: 
+                System.out.println("\n----------------------");
                 System.out.println("An invalid input has been entered");
+                openMenu(vm, a, choice);
                 break;
 
         }
@@ -90,6 +92,7 @@ public class Main
         if (!vm.selectItem(itemCode)) {
             System.out.println("\n----------------------");
             System.out.print("Invalid code");
+            System.out.println("Returning back to Menu");
             System.out.println();
             openMenu(vm, a, choice);
         }

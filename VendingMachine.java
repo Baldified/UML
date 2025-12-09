@@ -110,7 +110,7 @@ public class VendingMachine
      */
     public boolean selectItem(int numberCode) 
     {
-        if (numberCode < 100 || numberCode > 803 || numberCode % 100 > 3) {
+        if (!stock.containsKey(numberCode)) {
             return false;
         }
         this.currentSelection = numberCode;

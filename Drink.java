@@ -8,6 +8,7 @@ public class Drink extends Product
 {
     public DrinkType drinkType;
     public int volume;
+    public String drinkDetails;
     /**
      * Constructor to create a new Drink object.
      * @param name The name given to a drink.
@@ -26,9 +27,10 @@ public class Drink extends Product
      * Method to display the drink info.
      */
     public String displayProductInfo() {
-        super.displayProductInfo();
-        System.out.println("Volume: " + volume + "ml");
-        System.out.println("Type: " + drinkType);
-        return " ";
+        drinkDetails = (super.displayProductInfo()
+                        + "\nVolume: " + volume
+                        + "ml\nType: " + drinkType);
+        return drinkDetails;
     }
+    
 }

@@ -1,7 +1,7 @@
 
 /**
  * Product class serves as a super class to Drink and Snack classes.
- * Has fields such as name, price, and quantity.
+ * Has fields such as name, price, quantity, and productDetails.
  * @author Bruce Lam
  */
 public class Product
@@ -9,6 +9,7 @@ public class Product
     public String name;
     public double price;
     public int quantity;
+    public String productDetails;
     
     /**
      * Constructor to create a new Product object.
@@ -48,9 +49,9 @@ public class Product
      * Method to display the product info.
      */
     public String displayProductInfo() {
-        System.out.println("Product: " + name + ", Price: $" + price);
-        System.out.println("Stock: " + quantity);
-        return " ";
+          productDetails = ("Product: " + name + ", Price: $" + price
+                            + "\nStock: " + quantity);
+          return productDetails;
     }
     
     /**
