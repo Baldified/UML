@@ -103,7 +103,7 @@ public class Main
             {
                 openMenu(vm, a, choice);
             }else if(chooseMenu.equals("y")){
-                accountingSystem(vm, a, choice);
+                moneyInsertionSystem(vm, a, choice);
             }else {
                 System.out.println("Invalid input. Enter 'y' or 'n'.");
             }
@@ -166,7 +166,7 @@ public class Main
      * @param a The variable name of the scanner.
      * @param choice The inputted choice of the user.
      */
-    private static void accountingSystem(VendingMachine vm, Scanner a, int choice) {
+    private static void moneyInsertionSystem(VendingMachine vm, Scanner a, int choice) {
         System.out.println("----------------------");
         System.out.println("Please insert $" + vm.stock.get(vm.currentSelection).getProductPrice());
 
