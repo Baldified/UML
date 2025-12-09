@@ -61,6 +61,7 @@ public class Product
             quantity--;
         }
         else {
+            System.out.println("\n----------------------");
             System.out.println("There is nothing to remove from.");
         }
     }
@@ -73,6 +74,7 @@ public class Product
             quantity++;
         }
         else if (quantity >= 10) {
+            System.out.println("\n----------------------");
             System.out.println("The selected stock is currently full.");
         }
     }

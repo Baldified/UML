@@ -43,6 +43,7 @@ public class Main
             choice = a.nextInt();
 
             if (choice > 5 || choice < 0) {
+                System.out.println("\n----------------------");
                 System.out.println("Invalid choice, please try again");
             }
         }
@@ -54,6 +55,7 @@ public class Main
 
             case 2: 
                 System.out.println("Thank you for visiting the machine");
+                a.close();
                 System.exit(0);
                 break;
 
@@ -68,7 +70,8 @@ public class Main
                 openMenu(vm, a, choice);
                 break;
 
-            default: System.out.println("An invalid input has been entered");
+            default: 
+                System.out.println("An invalid input has been entered");
                 break;
 
         }
@@ -85,8 +88,9 @@ public class Main
         vm.displayMenu();
         int itemCode = a.nextInt();
         if (!vm.selectItem(itemCode)) {
-            System.out.print("Invalid code \n");
             System.out.println("\n----------------------");
+            System.out.print("Invalid code");
+            System.out.println();
             openMenu(vm, a, choice);
         }
         else if (vm.stock.get(itemCode).getProductStock() == 0) {
@@ -105,7 +109,10 @@ public class Main
             }else if(chooseMenu.equals("y")){
                 moneyInsertionSystem(vm, a, choice);
             }else {
-                System.out.println("Invalid input. Enter 'y' or 'n'.");
+                System.out.println("\n----------------------");
+                System.out.println("Invalid input.");
+                System.out.println("Returning back to Menu");
+                openChoiceSelection(vm, a, choice);
             }
         }
     }
@@ -117,6 +124,7 @@ public class Main
      * @param choice The inputted choice of the user.
      */
     private static void stockSystem(VendingMachine vm, Scanner a,int choice) {
+        System.out.println("\n----------------------");
         vm.showStock();
 
         System.out.println();
@@ -128,6 +136,7 @@ public class Main
 
         switch (chooseStock) {
             case "refill":
+                System.out.println("\n----------------------");
                 System.out.println("Please select a stock to refill."); 
                 int addItemCode = a.nextInt();
 
@@ -136,11 +145,14 @@ public class Main
                     stockSystem(vm, a, choice);
                 } 
                 else {
+                    System.out.println("\n----------------------");
                     System.out.println("Invalid item code.");
+                    stockSystem(vm, a, choice);
                 }
                 break;
 
             case "remove":
+                System.out.println("\n----------------------");
                 System.out.println("Please select a stock to remove from");
                 int removeItemCode = a.nextInt();
 
@@ -149,7 +161,9 @@ public class Main
                     stockSystem(vm, a, choice);
                 }
                 else {
+                    System.out.println("\n----------------------");
                     System.out.println("Invalid item code.");
+                    stockSystem(vm, a, choice);
                 }
                 break;
 
@@ -158,6 +172,7 @@ public class Main
                 break;
             
             default:
+                System.out.println("\n----------------------");
                 System.out.println("Please choose from the given options.");
                 stockSystem(vm, a, choice);
                 break;
@@ -181,7 +196,7 @@ public class Main
             payingSystem(vm, a, choice, insertedMoney);
         } 
         else if (insertedMoney == 0){
-            System.out.println("----------------------");
+            System.out.println("\n----------------------");
             System.out.println("No money was inserted");
             System.out.println("Returning back to Menu");
             openMenu(vm, a, choice);

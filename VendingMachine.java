@@ -149,7 +149,6 @@ public class VendingMachine
      */
     public void showStock()
     {   
-        System.out.println();
         System.out.println("Currently in Stock:");
         for (int allStock : stock.keySet()) {
             if (stock.get(allStock).getProductName() != "Empty") {
