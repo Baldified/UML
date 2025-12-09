@@ -156,7 +156,11 @@ public class Main
             case "return":
                 openMenu(vm, a, choice);
                 break;
-
+            
+            default:
+                System.out.println("Please choose from the given options.");
+                stockSystem(vm, a, choice);
+                break;
         }
     }
 
