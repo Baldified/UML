@@ -124,8 +124,8 @@ public class VendingMachine
     {
         if (stock.containsKey(currentSelection)) {
             System.out.println();
-            System.out.println("Are you sure you want to select" +" "+ currentSelection + " (" + stock.get(currentSelection).getProductName() + ")");
-            if (stock.containsKey(currentSelection >= 300)){
+            System.out.println("Are you sure you want to select "+ currentSelection + " (" + stock.get(currentSelection).getProductName() + ")");
+            if (stock.get(currentSelection).getProductName() == "Empty" ){
                 System.out.println("This slot is empty.");
             }
             else {

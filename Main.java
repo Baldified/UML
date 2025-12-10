@@ -54,6 +54,7 @@ public class Main
                 break;
 
             case 2: 
+                System.out.println("\n----------------------");
                 System.out.println("Thank you for visiting the machine");
                 a.close();
                 System.exit(0);
@@ -114,7 +115,7 @@ public class Main
             }else {
                 System.out.println("\n----------------------");
                 System.out.println("Invalid input.");
-                System.out.println("Returning back to Menu");
+                System.out.println("Returning back to choices");
                 openChoiceSelection(vm, a, choice);
             }
         }
@@ -232,6 +233,9 @@ public class Main
                 if(vm.balance > 0) {
                     System.out.printf("Your change is $%.2f", (vm.returnBalance()));
                     System.out.println();
+                    openMenu(vm, a, choice);
+                }
+                else {
                     openMenu(vm, a, choice);
                 }
             }

@@ -1,7 +1,7 @@
 
 /**
  * Product class serves as a super class to Drink and Snack classes.
- * Has fields such as name, price, quantity, and productDetails.
+ * Has fields such as name, price, quantity, productDetails, min, and max.
  * @author Bruce Lam
  */
 public class Product
@@ -10,6 +10,8 @@ public class Product
     public double price;
     public int quantity;
     public String productDetails;
+    public int max = 10;
+    public int min = 0;
     
     /**
      * Constructor to create a new Product object.
@@ -58,7 +60,7 @@ public class Product
      * Method to remove 1 from stock.
      */
     public void removeFromStock() {
-        if (quantity > 0) {
+        if (quantity > min) {
             quantity--;
         }
         else {
@@ -71,10 +73,10 @@ public class Product
      * Method to add 1 to stock.
      */
     public void addToStock() {
-        if (quantity < 10) {
+        if (quantity < max) {
             quantity++;
         }
-        else if (quantity >= 10) {
+        else if (quantity >= max) {
             System.out.println("\n----------------------");
             System.out.println("The selected stock is currently full.");
         }
