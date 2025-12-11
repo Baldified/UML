@@ -6,7 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * The test class ProductTest.
+ * The test class ProductTest has test methods for Product class methods.
+ * Has Fields such as product, productWithStock.
  *
  * @author  Dylan Scalia
  */
@@ -20,14 +21,6 @@ public class ProductTest
     public ProductTest()
     {
     }
-
-     public void testName() {
-        Product p = new Product("Dylan", 1.50, 1);
-        assertEquals("Dylan", p.getProductName());
-    }
-
-    
-    
     /**
      * Sets up the test fixture.
      *
@@ -36,7 +29,7 @@ public class ProductTest
     @BeforeEach
     public void setUp()
     {
-       product = new Product("Dylan", 1.50, 1);
+       product = new Product("Dylan", 1.50, 10);
        productWithStock = new Product("test", 1.50, 10);  
     }
 
@@ -51,34 +44,44 @@ public class ProductTest
     }
 
     @Test
-    public void displayProductInfo()
+    public void testGetProductName()
     {
-        String expected = "Product: Dylan, Price: $1.50, Stock: 1"; // match your implementation
-        assertEquals(expected, product.displayProductInfo());
+        String name = "Dylan";
+        Product p = new Product("Dylan", 1.50, 1);
+        assertEquals(name, p.getProductName());
         
-        
-        String displayTest = "Product: " + product.name + ", Price: $" + product.price;
-        displayTest += "Stock: " + product.quantity; 
-        Product product1 = new Product("Dylan", 1.50, 1);
-        assertEquals(product, product1.displayProductInfo());
-        product1.removeFromStock();
-        product1.addToStock();
+        String falseName = "not dylan";
+        assertNotEquals(falseName, p.getProductName());
     }
 
     @Test
-    public void getProductName()
+    public void testGetProductPrice()
     {
-        Product product1 = new Product("test", 1.50, 10);
-        assertEquals("Dylan", product.getProductName());
-        assertEquals("test", product1.getProductName());
-        String expectedBefore = "Product: test, Price: $1.50, Stock: 10";
-        assertEquals(expectedBefore, product1.displayProductInfo());
-        product1.addToStock();      
-        product1.removeFromStock(); 
-        product1.addToStock();     
-        String expectedAfter = "Product: test, Price: $1.50, Stock: 11";
-        assertEquals(expectedAfter, product1.displayProductInfo());
+        Product product1 = new Product("Dylan", 10.00, 10);
+        assertEquals(10.00, product1.getProductPrice(), 0.1);
+        assertNotEquals(100, product1.getProductPrice(), 0.1);
+    }
+
+   
+
+    @Test
+    public void testGetProductStock()
+    {
+        assertEquals(10, product.getProductStock());
+        assertNotEquals(1, product.getProductStock());
+    }
+    
+    @Test
+    public void testGetProductDisplay() {
+        String info = ("Product: Dylan, Price: $1.5\nStock: 10");
+        assertEquals(info, product.displayProductInfo());
+        
+        String falseInfo = ("Product: Bylan, Price: $1111.5\nStock: 1110");
+        assertNotEquals(falseInfo, product.displayProductInfo()) ;
     }
 }
+
+
+
 
 

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * The test class VendingMachineTest.
- *
+ * The test class VendingMachineTest has test methods for VendingMachine class methods
+ * Has fields such as vendingM1
  * @author Bruce Lam
  */
 public class VendingMachineTest
